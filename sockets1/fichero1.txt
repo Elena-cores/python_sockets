@@ -1,0 +1,40 @@
+6. Es posible limitar el tráfico que entra o sale de las subredes mediante Network ACLs.
+Verificar en primer lugar la estructura de la ACL predeterminada asociada a las subredes, y
+sus reglas Inbound y Outbound. ¿Se limita de alguna manera el tráfico de red con esta
+ACL? A continuación, crear una ACL de prueba para la red privada que impida el acceso
+por HTTP desde la red “publica” donde se encuentra el ServidorPublico, pero que sí
+permita el acceso por SSH desde esa red (será el único servicio permitido). A continuación,
+activar la ACL en la red privada y verificar su funcionamiento. Indicar las reglas usadas.
+7. Terminar la ejecución de las instancias usadas, el NAT Gateway, la subred privada, la
+Network ACL y la tabla de encaminamiento. Indicar el orden seguido en la eliminación
+de estos recursos Nota: hay que tener en cuenta las dependencias. Por ejemplo, para
+eliminar una tabla de encaminamiento no puede estar asignada a ninguna subred.
+5. ALMACENAMIENTO. S3
+1. Acceder a la consola de administración de S3 (Storage → S3) y crear un nuevo bucket.
+Utilizar un nombre significativo (por ejemplo, mi_nombre_y_apellido) y ubicarlo en la
+región de trabajo. Usar las opciones por defecto (ACLs disabled, bloquear todo el acceso
+público, no encriptado) salvo el control de versiones, que lo activaremos. Identificar la clase
+de almacenamiento S3 usada en este nuevo bucket (Storage class).
+Nota: Los nombres de bucket son únicos en una región AWS, y siguen el convenio del
+DNS (caracteres alfanuméricos, puntos y guiones, y sólo minúsculas).
+2. Subir algún archivo al nuevo bucket creado (botón Upload). Crear alguna carpeta para
+organizar los archivos (es posible usar Cut / Paste para mover los archivos entre las
+carpetas). Estudiar las propiedades de los archivos subidos al bucket (pulsando sobre la
+casilla de selección del archivo). ¿Qué ocurre si intentamos descargar el archivo pulsando
+sobre su URL?
+3. Vamos a usar el bucket para alojar contenidos web estáticos de acceso público a través de
+un URL. Para ello seleccionamos el bucket y editamos su configuración. Habrá que
+deshabilitar la configuración de bloqueo de acceso público y escribir una política de bucket.
+En Permisos, desactivar la opción Bloquear acceso público. En Propiedades, editar la
+sección Static website hosting, y activar esta opción, indicando en las propiedades las
+páginas index.html y error.html propuestas.
+4. Añadir una página de inicio (index.html) en la raíz del bucket con un texto significativo.
+Seleccionar los archivos y carpetas creados y hacerlos públicos (Acciones → Hacer
+público). A continuación, lanzar una petición web al URL asociado al bucket. Comprobar
+que es posible acceder a la página de inicio.
+Si queremos acceder vía web a todos los contenidos del bucket será necesario establecer
+una política de acceso adecuada (en la misma pestaña de Permisos).
+Para más información:
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html
+Definir y activar dicha política. A continuación, acceder a uno de los contenidos del bucket
+a través de su URL. Desde el panel de control de S3 eliminar el bucket de pruebas. 
